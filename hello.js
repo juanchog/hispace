@@ -1,23 +1,38 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+  Session.setDefault('twitPublished', false);
 
   Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+    twitPublished: function () {
+      return Session.get('twitPublished');
     }
   });
 
   Template.hello.events({
     'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+        Meteor.call('postTweet');
     }
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+
   });
+
+    Meteor.methods({
+        postTweet: function() {
+            Twit = new TwitMaker({
+                consumer_key: '2nuTAmxr5kcnajWFLhZH4Uot1'
+                , consumer_secret: 'H51cswVtT7521okJpxCxi4giKBUb2AqEu8xdCtEtDbzemXPG3j'
+                , access_token: '3154707879-qTsy7TjARsQePUfAbuQQzDAeRiUIKfgrvInenWQ'
+                , access_token_secret: 'SD4lqNETA8quP12U7ukSSGAPHTgoBVNZFRcBIFCnifd0o'
+            });
+            Twit.post('statuses/update', {status: 'hello ISS 2!'}, function (err, data, response) {
+                Session.set('twitPublished', true);
+                console.log(data);
+                console.log(reponse);
+            });
+        }
+    });
+
 }

@@ -10,5 +10,9 @@
 
 <template name="hello">
   <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    {{#if twitPublished }}
+        <p>Tu twit se ha publicado!</p>
+    {{else}}
+        <p>Aún no has publicado el twit</p>
+    {{/if}}
 </template>
