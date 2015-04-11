@@ -6,6 +6,10 @@
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
+  {{> issposition}}
+
+
+
 </body>
 
 <template name="hello">
@@ -15,4 +19,10 @@
     {{else}}
         <p>Aún no has publicado el twit</p>
     {{/if}}
+</template>
+
+<template name="issposition">
+    <h2>Posición actual de la ISS</h2>
+    <h3>latitude {{isslatitude}}</h3><br>
+    <h3>longitud {{isslongitud}}</h3>
 </template>
