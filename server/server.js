@@ -50,5 +50,14 @@
             CurrentCity.update(CurrentCity.findOne(), {name: cityLongName, latitude: latitude, longitude: longitude});
 
             return pos.data;
-        }
+        },
+        postTUser: function(text) {
+            var twitter = new TwitterApi();
+
+            if(Meteor.user()) {
+                twitter.postTweet(text);
+                return true;
+            }
+            return false;
+        },
     });
