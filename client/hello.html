@@ -1,19 +1,5 @@
-<head>
-  <title>hello</title>
-</head>
-
-<body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> issposition}}
-
-
-
-</body>
-
 <template name="hello">
-  <button>Click Me</button>
+    <button class="btn btn-material-indigo">Click Me</button>
     {{#if twitPublished }}
         <p>Tu twit se ha publicado!</p>
     {{else}}

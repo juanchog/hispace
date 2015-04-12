@@ -1,0 +1,27 @@
+<template name="sendtwit">
+    <div class="container">
+
+
+        <div class="content-scrollable">
+            <div class="wrapper-message">
+                <div class="title-message">Send twit!</div>
+                <button class="btn btn-material-indigo">Click Me</button>
+                {{#if twitPublished }}
+                    <p>Tu twit se ha publicado!</p>
+                {{else}}
+                    <p>Aún no has publicado el twit</p>
+                {{/if}}
+                <div>
+                    <button id="thanks" class="btn btn-primary">Send Twit</button>
+                    <button class="btn btn-primary"><a href="javascript:history.back();">Back</a></button>
+                </div>
+                <h2>Posición actual de la ISS</h2>
+                {{#with issPosition}}
+                    <h3>City</h3>{{name}}
+                    <h3>latitude</h3>{{latitude}}
+                    <h3>longitude</h3>{{longitude}}
+                {{/with}}
+            </div>
+        </div>
+    </div>
+</template>

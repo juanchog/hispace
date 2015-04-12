@@ -6,7 +6,7 @@ if (Meteor.isClient) {
     Session.setDefault('latitude', "latitude");
     Session.setDefault('longitud', "longitud");
 
-    Template.hello.helpers({
+    Template.sendtwit.helpers({
         twitPublished: function () {
             return Session.get('twitPublished');
         },
@@ -16,7 +16,7 @@ if (Meteor.isClient) {
         }
 
     });
-    Template.issposition.helpers({
+    Template.sendtwit.helpers({
         pruebas: function () {
             return Prueba.find();
         },
@@ -37,7 +37,7 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.hello.events({
+    Template.sendtwit.events({
         'click button': function () {
             //Meteor.call('postTweet');
             var position = Meteor.call('positionOfISS');
