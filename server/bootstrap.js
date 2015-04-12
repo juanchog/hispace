@@ -20,7 +20,8 @@ Meteor.startup(function () {
 
     Meteor.setInterval(function () {
         Meteor.call('positionOfISS');
-        Meteor.call('automatedTweet', 30, new Date());
+        Meteor.call('automatedTweet');
     }, 1000);
+    //Meteor.call('postTweet', "We are right now passing over #" + 'Puertollano');
 });
 

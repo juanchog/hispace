@@ -2,16 +2,21 @@
     <div class="container">
 
             <div>
+            {{#unless logged}}
+                    {{> loginButtons}}
+             {{/unless}}
 
-                <div>{{> loginButtons}}</div>
-                <div>
-                    {{#if currentUser}}
-                 <button id="sayHi" class="btn btn-primary">Say Hi!</button>
-                    {{/if}}
-                </div>
+                {{#if logged}}
+                    <div>
+
+                        {{#if currentUser}}
+                     <button id="sayHi" class="btn btn-primary">Say Hi!</button>
+                        {{/if}}
 
 
+                    </div>
 
+                {{/if}}
             </div>
 
 

@@ -2,6 +2,9 @@
  * Created by Carlos on 11/4/15.
  */
 
+var dateLastTweet = new Date ();
+var tweetInterval = 30;
+
     Meteor.methods({
         runloop: function() {
             //
@@ -11,17 +14,15 @@
                 i = i + 1;
             }
         },
-        postTweet: function() {
+        postTweet: function(text) {
             Twit = new TwitMaker({
                 consumer_key: '2nuTAmxr5kcnajWFLhZH4Uot1'
                 , consumer_secret: 'H51cswVtT7521okJpxCxi4giKBUb2AqEu8xdCtEtDbzemXPG3j'
                 , access_token: '3154707879-qTsy7TjARsQePUfAbuQQzDAeRiUIKfgrvInenWQ'
                 , access_token_secret: 'SD4lqNETA8quP12U7ukSSGAPHTgoBVNZFRcBIFCnifd0o'
             });
-            Twit.post('statuses/update', {status: 'Test from Carlos'}, function (err, data, response) {
+            Twit.post('statuses/update', {status: text}, function (err, data, response) {
 
-                console.log(data);
-                console.log(reponse);
             });
         },
         positionOfISS: function() {
@@ -93,15 +94,17 @@
 
             setTimeout(doStuff, 1000);
         },
-        automatedTweet: function(secondsInterval, timeCalled){
+        automatedTweet: function(){
             var currentTime = new Date();
-            var difference = (currentTime - timeCalled) / 1000;
+            var difference = (currentTime - dateLastTweet) / 1000;
             var cityName = CurrentCity.findOne().cityLongName;
-
-
-            if(difference > secondsInterval) {
+            Meteor.call('postTweet', "We are right now passing over #" + 'Puertollano');
+            if(difference > tweetInterval) {
                 if (cityName != '' && cityName != 'No city here' && cityName != null && cityName != 'undefined') {
-                    postTUser("We are right now passing over #" + cityName);
+                    Meteor.call('postTweet', "Hi to all our folks in #" + cityName.replace(/\s+/g, '')
+                    + " we are flying over your heads right now! #spaceappchallenge #spaceappsvlc #nasa");
+                }else{
+                    Meteor.call('postTweet', "We are now flying over the middle of nowhere, stay tunned! #spaceappchallenge #spaceappsvlc #nasa");
                 }
             }
 
