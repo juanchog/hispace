@@ -11,3 +11,8 @@ mrt:twit
 http
 fezvrasta:bootstrap-material-design
 iron:router
+sewdn:twitter-api
+accounts-twitter
+accounts-ui
+mdg:camera
+oauth
