@@ -8,4 +8,12 @@
 <nav class="navbar navbar-default">
     <h1>Say Hi to ISS</h1>
 </nav>
+<div style="text-align: left; padding-left: 10px; padding-right: 10px;">
+{{#with issPosition}}
+    <h3 >ISS is flying over: </h3><h2>{{name}}</h2>
+    <h5 style="text-align:center;">Latitude: {{latitude}} Longitude: {{longitude}}</h5>
+{{/with}}
+</div>
+
+
 </body>
