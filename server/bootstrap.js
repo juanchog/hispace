@@ -1,3 +1,6 @@
+
+
+
 // if the database is empty on server start, create some sample data.
 Meteor.startup(function () {
     if (CurrentCity.find().count() === 0) {
@@ -14,4 +17,10 @@ Meteor.startup(function () {
 
         });
     }
+
+    Meteor.setInterval(function () {
+        Meteor.call('positionOfISS');
+        Meteor.call('automatedTweet', 30, new Date());
+    }, 1000);
 });
+

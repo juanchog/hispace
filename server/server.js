@@ -1,7 +1,16 @@
 /**
  * Created by Carlos on 11/4/15.
  */
+
     Meteor.methods({
+        runloop: function() {
+            //
+            var i = 0;
+            while (true) {
+                console.log("estoy en un loop" + i);
+                i = i + 1;
+            }
+        },
         postTweet: function() {
             Twit = new TwitMaker({
                 consumer_key: '2nuTAmxr5kcnajWFLhZH4Uot1'
@@ -60,4 +69,41 @@
             }
             return false;
         },
+        pollISSPositionLoop : function(text) {
+            var timesRun = 0;
+            var startTime = new Date().getTime();
+
+            var doStuff = function () {
+                var now = new Date().getTime();
+
+                console.log('Action ' + (timesRun + 1) + ' started ' + (now - startTime) + 'ms after script start');
+
+                // Waste some time
+                for (var i = 0; i < 100000; i++) {
+                    document.getElementById('unobtanium');
+                }
+
+                console.log('and took ' + (new Date().getTime() - now) + 'ms to run.');
+
+                // Run only 5 times
+                if (++timesRun < 5) {
+                    setTimeout(doStuff, 1000);
+                }
+            };
+
+            setTimeout(doStuff, 1000);
+        },
+        automatedTweet: function(secondsInterval, timeCalled){
+            var currentTime = new Date();
+            var difference = (currentTime - timeCalled) / 1000;
+            var cityName = CurrentCity.findOne().cityLongName;
+
+
+            if(difference > secondsInterval) {
+                if (cityName != '' && cityName != 'No city here' && cityName != null && cityName != 'undefined') {
+                    postTUser("We are right now passing over #" + cityName);
+                }
+            }
+
+        }
     });
