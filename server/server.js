@@ -1,7 +1,3 @@
-/**
- * Created by Carlos on 11/4/15.
- */
-
 var dateLastTweet = new Date ();
 var tweetInterval = 30;
 
@@ -33,7 +29,6 @@ var tweetInterval = 30;
 
             var city = Meteor.http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+ latitude + "," + longitude + "&sensor=true_or_false");
             console.log(city.data.results.address_components);
-            //console.log(city);
             console.log('MIAU');
 
 
@@ -42,18 +37,13 @@ var tweetInterval = 30;
 
             if (city != 'undefined'){
                 city.data.results.forEach(function (acity) {
-                    //console.log(acity.address_components[0].long_name);
                     var adcomp = acity.address_components[0]
                     if(adcomp.types[0] == 'locality'){
 
                         console.log(adcomp.long_name);
                         cityLongName = adcomp.long_name;
                     }
-                    /*console.log(acity.address_components);
-                     console.log('');*/
                 });
-                //console.log(city);
-
             }
 
             CurrentCity.findOne();
